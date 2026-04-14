@@ -2,13 +2,14 @@
 
 ## 🎯 Objective
 
-Experience how GitHub Copilot can accelerate modern software development by building a simple, end-to-end application within a few hours.
+Experience how GitHub Copilot can accelerate modern software development by building a simple, end-to-end application and using Playwright to validate it within a few hours.
 
 Participants will use Copilot to:
 
 - Rapidly scaffold application components (frontend + API)
 - Implement core functionality using natural language prompts
 - Apply basic business logic or validation to real-world scenarios
+- Generate, refine, and troubleshoot meaningful Playwright end-to-end tests
 
 ### Theme: Document Validation
 
@@ -39,22 +40,23 @@ Participants must have the following ready **before** the hackathon day:
 
 ## 📅 Agenda
 
-| Phase                      | Duration |
-|----------------------------|----------|
-| Kickoff & Setup            | 30 min   |
-| Build Phase 1 — Core       | 2 hours  |
-| Build Phase 2 — Enhance    | 1.5 hours|
-| Build Phase 3 — Stretch    | 1 hour   |
-| Demos & Wrap-Up            | 1 hour   |
+| Phase                                | Duration |
+|--------------------------------------|----------|
+| Kickoff & Setup                      | 30 min   |
+| Build Phase 1 — Core App             | 1.5 hours|
+| Build Phase 2 — Playwright Foundations | 1.5 hours|
+| Build Phase 3 — Playwright Deepening | 1.5 hours|
+| Demos & Wrap-Up                      | 1 hour   |
 
 ### Kickoff & Setup (30 min)
 
 - Welcome and session goals
 - **Live demo:** Build a small feature with Copilot in 5 minutes (shows agent mode, inline completions, chat)
+- **Playwright demo:** Generate a Playwright test from a user story, run it, and fix a failure with Copilot
 - Overview of the challenge and example use cases
 - Verify environments are working
 
-### Build Phase 1 — Core Flow (2 hours)
+### Build Phase 1 — Core App (1.5 hours)
 
 Goal: **Achieve a working end-to-end flow.**
 
@@ -65,17 +67,27 @@ Goal: **Achieve a working end-to-end flow.**
 
 > 💡 **Tip:** Use a starter template (see below) to skip boilerplate and jump straight to the interesting parts.
 
-### Build Phase 2 — Enhance (1.5 hours)
+### Build Phase 2 — Playwright Foundations (1.5 hours)
 
-Goal: **Add business value and polish.**
+Goal: **Create the first meaningful Playwright coverage for the app.**
 
-- Add validation rules or business logic (required fields, date checks, format validation)
-- Enhance results display (clear pass/fail indicators, detailed feedback, insights)
-- Improve user experience (error handling, loading states, styling)
+- Install and configure Playwright
+- Create the first end-to-end spec with Copilot
+- Automate the happy path for the chosen document-validation scenario
+- Run tests locally and interpret failures with Copilot
 
-### Build Phase 3 — Stretch (1 hour)
+### Build Phase 3 — Playwright Deepening (1.5 hours)
 
-Goal: **Go beyond the basics.** For teams that have a solid working app.
+Goal: **Deepen coverage and improve test quality.**
+
+- Add at least one negative-path validation test
+- Add one richer scenario such as file upload, multi-document flow, retry/error handling, or mocked backend behavior
+- Improve selectors and assertions using accessible locators such as `getByRole` and `getByLabel`
+- Use trace or screenshot output to debug a failed test with Copilot
+
+### Stretch Goals
+
+For teams that finish early or want additional polish:
 
 - Add unit tests using Copilot-generated test suggestions
 - Support multiple document types — add a second validation scenario (e.g., invoices + HR forms) with different rules
@@ -131,7 +143,10 @@ Share this with participants at kickoff:
 | **Agent Mode** | Once you have a plan, use agent mode to scaffold and build features from a description. Great for initial project setup. |
 | **Inline Completions** | Just start typing — Copilot will suggest the next lines. Tab to accept. |
 | **Copilot Chat** | Ask questions, debug errors, explain code. Use `#file` to reference specific files for context. |
-| **Generate Tests** | Ask Copilot to write unit tests for your validation functions. |
+| **Generate Playwright Tests** | Ask Copilot to generate a Playwright test from a user story, such as: *"Write a Playwright test for a valid invoice submission that shows a successful validation result."* |
+| **Improve Selectors** | Ask Copilot to replace brittle selectors with accessible ones like `getByRole` or `getByLabel`. |
+| **Debug Flaky Tests** | Paste a Playwright timeout or assertion failure into chat and ask Copilot why the test is flaky and how to stabilize it. |
+| **Refine Assertions** | Ask Copilot to strengthen a Playwright spec with clearer assertions for success, validation failures, and error states. |
 | **Fix Errors** | Paste an error message into chat and ask Copilot to diagnose and fix it. |
 | **Natural Language → Code** | Write a comment describing what you want, then let Copilot generate the implementation. |
 
@@ -143,16 +158,19 @@ To ensure success within the session:
 
 - **Focus on one document type / use case** — don't try to do everything
 - **Prioritize a working solution over complexity** — a simple app that works beats a complex one that doesn't
+- **Treat Playwright as part of the core deliverable** — aim for at least three meaningful test scenarios
 - **Use Copilot throughout** — the point is the experience, not just the output
 - **Commit early and often** — it's good practice and helps you track progress
-- Keep it **simple**: form-based input is fine; file upload/parsing is a stretch goal
+- Keep the app **simple** so there is time to go deeper on Playwright
 
 ---
 
 ## 🎉 What Success Looks Like
 
 - ✅ A working application (frontend + API) running locally
+- ✅ Three meaningful Playwright test scenarios: happy path, negative path, and one deeper scenario
 - ✅ Clear demonstration of Copilot-assisted development during the presentation
+- ✅ Evidence that the team used Copilot to generate, refine, and debug Playwright tests
 - ✅ A practical, business-relevant validation scenario
 - ✅ A creative approach and thoughtful user experience
 - ✅ A team that learned something new about AI-assisted development

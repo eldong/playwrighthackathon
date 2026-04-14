@@ -2,7 +2,7 @@
 
 ## Your Role
 
-During Phase 2, participants should already have a working app. Your job shifts from **unblocking setup issues** to **keeping people focused on the right things** and helping them prioritize.
+During Phase 2, participants should already have a working app. Your job shifts from app setup to **helping them establish Playwright foundations** and keeping them from getting lost in tooling or flaky tests.
 
 ---
 
@@ -10,11 +10,11 @@ During Phase 2, participants should already have a working app. Your job shifts 
 
 | Time Into Phase | Where They Should Be | Red Flag |
 |-----------------|----------------------|----------|
-| 10 min | Have a Phase 2 plan and prompts saved | Still fixing Phase 1 bugs |
-| 30 min | Adding validation rules | Over-engineering a single rule or going down a rabbit hole |
-| 50 min | Working on results display | Still haven't added any new validation rules |
-| 1 hour | Polishing UX | No visible improvements to results display |
-| 1.5 hours | Testing edge cases, wrapping up | App is broken with no working demo |
+| 10 min | Have a Phase 2 plan and prompts saved | Still fixing major Phase 1 bugs |
+| 30 min | Installing or configuring Playwright | Still debating whether to test at all |
+| 50 min | Writing the first happy-path spec | Still stuck in setup or no spec file yet |
+| 1 hour | Running and debugging the test | Test has never been run |
+| 1.5 hours | One happy-path test passes consistently | No passing Playwright test |
 
 ---
 
@@ -27,31 +27,28 @@ If someone's Phase 1 isn't working yet:
 - Suggest simplifying: drop the frontend framework and use plain HTML + fetch
 - Don't let them restart from scratch — fix what they have
 
-### Over-Engineering Validation
+### Playwright Setup Friction
 
-Watch for people building overly complex validation frameworks:
-- Regex patterns that are impossible to debug
-- Generic validation engines instead of specific rules
-- Trying to validate things that don't apply to their use case
+Watch for people getting stuck on setup details:
+- Browser install issues
+- Not knowing which command runs the tests
+- App and test runner not pointed at the same local URL
+- Confusion about where specs should live
 
-**Nudge:** "You need 5-8 rules that work and produce clear messages. Simple if-statements are fine — this isn't production code."
+**Nudge:** "Don't optimize the config. Get Playwright running, generate one spec, and prove the happy path works."
 
-### Spending Too Long on Styling
+### Brittle Selectors
 
-CSS rabbit holes are the #1 time sink in Phase 2.
+The biggest time sink in this phase is fighting selectors that break immediately.
 
-**Nudge:** "Try adding Water.css with a single line — it makes any HTML look decent without custom CSS. Then move on to the results display."
+**Nudge:** "Use `getByRole`, `getByLabel`, and visible text first. Avoid deep CSS selectors unless there's no better option."
 
-Quick CSS wins to suggest:
-- Water.css: `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">`
-- Or just add 10 lines of basic CSS via Copilot: *"Add minimal styling to make this form look clean and readable"*
-
-### Copilot Generating Inconsistent Code
+### Copilot Generating Inconsistent Tests
 
 If Copilot is generating code that doesn't match their existing patterns:
-- Suggest adding a `copilot-instructions.md` file with project conventions (this is also a Phase 3 stretch goal)
 - Use `#file` references to give Copilot context on existing code
 - Remind them to review and adjust generated code, not just accept everything
+- Ask them to paste the exact failure into chat instead of asking broad questions like "fix my test"
 
 ---
 
@@ -59,37 +56,37 @@ If Copilot is generating code that doesn't match their existing patterns:
 
 **Do intervene if:**
 - Someone is stuck on a Phase 1 issue — help them fix it fast so they can move to Phase 2
-- Someone has been on CSS/styling for 20+ minutes
-- Someone's validation logic is getting overly complex
+- Someone has spent 15+ minutes without getting Playwright installed or a spec created
+- Someone's selectors are obviously brittle and they keep retrying the same pattern
 - Someone's app is broken and they don't realize it
 
 **Don't intervene if:**
-- They're making different UX choices than you would
-- They're adding creative validation rules you didn't expect
-- They're spending time on the results display — that's the point of Phase 2
+- They're learning through one or two test failures
+- They're trying different assertion styles
+- They're moving a little slowly but have a spec running
 
 ---
 
 ## Nudges
 
-If someone doesn't know what rules to add:
-> "Think about what would actually go wrong with a real [document type]. What would make you reject it?"
+If someone doesn't know what to automate first:
+> "Start with the most demoable success path: valid input goes in, a clear success result comes out."
 
-If someone's results display is just raw JSON:
-> "Can you add a pass/fail banner and list each error as a bullet point? That's all you need."
+If someone is fighting selectors:
+> "Can Playwright find this by label, button text, or role instead of a long CSS selector?"
 
 If someone is moving fast:
-> "Great progress — try submitting an empty form and see what happens. Then look at the Phase 3 stretch goals."
+> "Great progress — start your negative-path test now so Phase 3 can be about deeper coverage and debugging."
 
 ---
 
 ## Phase 2 Success Criteria
 
 At the end of Phase 2, each participant should have:
-1. Multiple validation rules (5+ ideally) with clear error messages
-2. A results display that makes pass/fail obvious
-3. At least one UX improvement beyond Phase 1
+1. Playwright installed and runnable
+2. One happy-path Playwright test passing
+3. A basic understanding of how to debug selector, timing, or assertion failures
 
-**It's OK if:** The styling is basic, there are only 3-4 rules, some edge cases aren't handled.
+**It's OK if:** The test is simple, there is only one passing scenario, or the assertions are basic.
 
-**It's not OK if:** The app looks the same as Phase 1 — some visible improvement should be there for the demo.
+**It's not OK if:** They finish the phase without a passing Playwright test.

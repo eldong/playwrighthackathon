@@ -1,12 +1,12 @@
-# Build Phase 1 — Core Flow (2 hours)
+# Build Phase 1 — Core App (1.5 hours)
 
 ## Goal
 
-By the end of this phase, you should have a **working end-to-end flow**: a frontend that sends data to an API, and the API returns a response that's displayed to the user.
+By the end of this phase, you should have a **minimal working app**: a frontend that sends data to an API, and the API returns a response that's displayed to the user. Keep the scope intentionally small so you have plenty of time for Playwright in Phases 2 and 3.
 
 ---
 
-## Step 1: Plan and Generate Your Prompts (15 min)
+## Step 1: Plan and Generate Your Prompts (10-15 min)
 
 Follow the **Copilot Workflow Guide** (`copilot-workflow-guide.md`) to:
 
@@ -18,7 +18,7 @@ Once you have your prompts saved, work through the remaining steps below — or 
 
 ---
 
-## Step 2: Set Up the Project (15 min)
+## Step 2: Set Up the Project (10-15 min)
 
 Create your project folder and initialize your stack.
 
@@ -32,7 +32,7 @@ Create your project folder and initialize your stack.
 
 ---
 
-## Step 3: Build the Frontend (30 min)
+## Step 3: Build the Frontend (20-25 min)
 
 Create a simple form that collects the fields for your document type.
 
@@ -41,13 +41,13 @@ Create a simple form that collects the fields for your document type.
 - A submit button
 - An area to display results
 
-**Keep it simple.** A plain HTML form with no styling is perfectly fine. Don't spend time on CSS yet — that's Phase 2.
+**Keep it simple.** A plain HTML form with no styling is perfectly fine. Don't spend time on CSS yet — your biggest investment after this phase is Playwright.
 
 > **Copilot tip:** Describe what you want in a comment or chat: *"Create a form with fields for vendor name, invoice amount, invoice date, and PO number. Add a submit button and a results div."*
 
 ---
 
-## Step 4: Build the API (30 min)
+## Step 4: Build the API (20-25 min)
 
 Create an endpoint that receives the form data and returns a response.
 
@@ -61,7 +61,7 @@ Create an endpoint that receives the form data and returns a response.
 
 ---
 
-## Step 5: Connect Frontend to API (20 min)
+## Step 5: Connect Frontend to API (15-20 min)
 
 Wire up the form submission to call your API and display the result.
 
@@ -76,7 +76,7 @@ Wire up the form submission to call your API and display the result.
 
 ---
 
-## Step 6: Add Basic Validation Logic (30 min)
+## Step 6: Add Basic Validation Logic (20-25 min)
 
 Now replace the placeholder response with actual validation.
 
@@ -110,6 +110,6 @@ By now you should have:
 - [ ] Validation results displayed back to the user
 - [ ] At least 2-3 validation rules working
 
-**If you're ahead of schedule:** Start thinking about what validation rules or UX improvements you want to add in Phase 2.
+**If you're ahead of schedule:** Start thinking about the three Playwright scenarios you want to cover in Phases 2 and 3: a happy path, a negative path, and one richer scenario.
 
-**If you're behind:** Focus on getting the API to return *any* response and displaying it. Skip fancy validation for now — you can add it in Phase 2.
+**If you're behind:** Focus on getting the API to return *any* response and displaying it. Skip fancy validation for now — the goal is a minimal app that is ready to test with Playwright next.

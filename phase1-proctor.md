@@ -2,7 +2,7 @@
 
 ## Your Role
 
-During Phase 1, your main job is to **unblock people quickly** and **keep energy up**. Most participants will hit the same few issues. This guide covers what to watch for and how to help.
+During Phase 1, your main job is to **unblock people quickly** and **protect the Playwright time later**. Most participants will hit the same few issues. This guide covers what to watch for and how to help.
 
 ---
 
@@ -13,8 +13,8 @@ During Phase 1, your main job is to **unblock people quickly** and **keep energy
 | 15 min | Have a plan, starting project setup | Still deciding on a use case or stack |
 | 30 min | Project initialized, starting frontend | Stuck on tooling install or environment issues |
 | 1 hour | Frontend form exists, starting API | No code written yet, or deep in CSS/styling |
-| 1.5 hours | API responds, wiring frontend to API | Still building the form or hasn't started the API |
-| 2 hours | End-to-end flow works with basic validation | Frontend and API not connected |
+| 1.25 hours | API responds, wiring frontend to API | Still building the form or hasn't started the API |
+| 1.5 hours | Minimal end-to-end flow works with basic validation | Frontend and API not connected |
 
 ---
 
@@ -53,6 +53,7 @@ Have these snippets ready to paste.
 **Do intervene if:**
 - Someone has been stuck for 10+ minutes on the same issue
 - Someone is going down a rabbit hole (e.g., setting up a database, adding authentication, elaborate CSS)
+- Someone is trying to overbuild the app instead of getting to a minimal testable flow
 - Someone hasn't written any code after 30 minutes
 - Someone is not using Copilot at all — gently remind them that's the point
 
@@ -72,7 +73,7 @@ If someone is over-thinking the architecture:
 > "Just get a form that submits to an endpoint and returns something. You can refactor later."
 
 If someone is spending too much time on styling:
-> "The form can be ugly — focus on getting data from the form to the API and back. We'll polish in Phase 2."
+> "The form can be ugly — focus on getting data from the form to the API and back. The real learning goal later is Playwright."
 
 If someone is not using Copilot:
 > "Try describing what you need in Copilot Chat — something like 'Create a POST endpoint that validates this JSON.' See what it gives you."
@@ -89,4 +90,4 @@ At the end of Phase 1, each participant should have:
 
 **It's OK if:** The UI is ugly, there's only one validation rule, error handling is minimal.
 
-**It's not OK if:** There's no working connection between frontend and API — that's the core deliverable.
+**It's not OK if:** There's no working connection between frontend and API — participants need a minimal app ready for Playwright in Phase 2.

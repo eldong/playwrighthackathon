@@ -1,8 +1,8 @@
-# Build Phase 2 — Enhance (1.5 hours)
+# Build Phase 2 — Playwright Foundations (1.5 hours)
 
 ## Goal
 
-By the end of this phase, your app should have **real validation logic** and a **polished user experience**. The ugly-but-working app from Phase 1 becomes something you'd be comfortable demoing.
+By the end of this phase, you should have **Playwright installed and working** with at least one meaningful end-to-end test covering your app's happy path.
 
 ---
 
@@ -10,85 +10,77 @@ By the end of this phase, your app should have **real validation logic** and a *
 
 Follow the **Copilot Workflow Guide** (`copilot-workflow-guide.md`) again:
 
-1. Use **Plan agent** to plan your Phase 2 enhancements — describe what you built in Phase 1 and what you want to improve
+1. Use **Plan agent** to plan your Phase 2 Playwright work — describe what you built in Phase 1 and what user flow you want to test
 2. Switch to **Agent Mode** and break the plan into step-by-step prompts
 3. Have Copilot save the prompts to a `phase2-prompts.md` file in your project
 
 **Example Plan agent prompt:**
-> "I have a working [use case] app with a [stack] frontend and API. The form submits data, the API validates it, and results display on screen. Now I want to: add more validation rules, improve the results display with pass/fail indicators, and improve the overall UX. Help me plan the steps."
+> "I have a working [use case] app with a [stack] frontend and API. The form submits data, the API validates it, and results display on screen. Help me set up Playwright, create a first happy-path end-to-end test, and debug the likely issues."
 
 ---
 
-## Step 2: Expand Validation Rules (30 min)
+## Step 2: Install and Configure Playwright (20-25 min)
 
-Add more meaningful business rules to your validation logic.
+Set up Playwright in your project and make sure you can run the test runner.
 
-**Ideas by use case:**
+**What to do:**
+- Install Playwright using the standard setup for your stack
+- Add the generated config and example spec files
+- Make sure your app can run locally while Playwright tests run against it
+- Run the starter test once so you understand the workflow
 
-| Use Case | Rules to Add |
-|----------|-------------|
-| Invoice | Amount within a range, date not more than 30 days old, vendor name minimum length, duplicate PO detection |
-| HR Form | Start date before end date, department must be from a valid list, employee ID format check |
-| ID Document | Expiry date in the future, document number regex pattern, issuing authority not empty |
-| Expense Report | Each line item has a category, total matches sum of line items, no single item exceeds policy limit |
-
-**Aim for 5-8 rules total.** Each rule should return a clear, human-readable error message.
-
-> **Copilot tip:** *"Add these validation rules to my validator: [list your rules]. Return each error as a separate item in the errors array with a clear message."*
+> **Copilot tip:** *"Set up Playwright for this project, add the recommended config, and explain how to run the tests against my local app."*
 
 ---
 
-## Step 3: Improve Results Display (20 min)
+## Step 3: Create Your First Happy-Path Test (25-30 min)
 
-Make validation results easy to understand at a glance.
+Write one end-to-end Playwright test that proves your app works for a valid submission.
 
-**What to add:**
-- A clear **pass/fail indicator** (green checkmark / red X, or a status banner)
-- Individual error messages listed with which field they relate to
-- A summary line (e.g., "3 of 5 checks passed")
+**What to test:**
+- Load the page
+- Fill in the form with valid data
+- Submit the form
+- Verify the success result appears on screen
 
-> **Copilot tip:** *"Update the results display to show a green banner if all checks pass, or a red banner with a list of errors if validation fails. Show a summary of how many checks passed out of the total."*
+Focus on reliable selectors. Prefer accessible locators like `getByRole`, `getByLabel`, and visible text over fragile CSS selectors.
 
----
-
-## Step 4: Improve the User Experience (20 min)
-
-Small UX improvements make a big difference in the demo.
-
-**Pick a few of these:**
-- Loading indicator while the API processes
-- Disable the submit button while a request is in-flight
-- Clear previous results when submitting again
-- Form validation on the client side (e.g., required fields before submit)
-- Helpful placeholder text in form fields
-- Basic styling — even a simple CSS framework like Water.css (one line to add) makes a big difference
-
-> **Copilot tip:** *"Add a loading spinner while the API request is in progress. Disable the submit button during the request and re-enable it when the response comes back."*
+> **Copilot tip:** *"Write a Playwright test for a valid [document type] submission. Use accessible selectors and assert that the success result appears."*
 
 ---
 
-## Step 5: Test Edge Cases (10 min)
+## Step 4: Run, Debug, and Refine the Test (20-25 min)
 
-Try to break your own app:
-- Submit an empty form — does it handle it gracefully?
-- Submit invalid data types (text in a number field)
-- Submit extremely long values
-- What happens if the API is down?
+Your first Playwright test probably won't pass on the first try. That's normal.
 
-Fix anything that crashes or produces confusing output.
+**What to do:**
+- Run the test and read the failure output carefully
+- Fix selectors, timing, or assertion issues
+- Ask Copilot to explain why the test failed and suggest a better locator or assertion
+- Re-run until the happy-path test passes consistently
 
-> **Copilot tip:** *"What edge cases could break my validation? Add handling for empty submissions, invalid data types, and extremely long field values."*
+> **Copilot tip:** *"This Playwright test is timing out when it clicks submit. Here is the error. Help me diagnose whether the issue is the selector, timing, or app behavior."*
+
+---
+
+## Step 5: Prepare for Deeper Coverage in Phase 3 (10-15 min)
+
+Pick the next two scenarios you want to automate in Phase 3:
+- One **negative-path** test, such as missing required fields or invalid values
+- One **deeper** scenario, such as file upload, alternate document type, backend failure handling, or mocked responses
+
+> **Copilot tip:** *"Suggest two high-value Playwright scenarios for this app beyond the happy path, and help me choose one negative-path test and one deeper scenario."*
 
 ---
 
 ## Checkpoint
 
 By now you should have:
-- [ ] 5-8 validation rules with clear error messages
-- [ ] A results display with pass/fail indicators
-- [ ] Basic UX improvements (loading state, client validation, etc.)
-- [ ] Edge cases handled gracefully
+- [ ] Playwright installed and runnable
+- [ ] One happy-path Playwright test passing
+- [ ] A basic understanding of selectors, assertions, and test failures
+- [ ] A plan for one negative-path test and one deeper scenario in Phase 3
 
-**If you're ahead of schedule:** Move on to Phase 3 stretch goals — unit tests, multiple document types, or Copilot customization files.
+**If you're ahead of schedule:** Start your negative-path Playwright test now.
 
-**If you're behind:** Focus on making sure your existing validation rules produce clear, readable output. A few good rules with a clean display beats many rules with confusing output.
+**If you're behind:** Focus on getting one happy-path test passing. Don't chase extra scenarios until that foundation is working.

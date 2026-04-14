@@ -1,124 +1,103 @@
-# Build Phase 3 — Stretch (1 hour)
+# Build Phase 3 — Playwright Deepening (1.5 hours)
 
 ## Goal
 
-You have a working, polished app. Phase 3 is about **going further** — pick one or more stretch goals that interest you. There's no required path here; choose what excites you or what would make your demo stand out.
+You have a working app and at least one passing Playwright test. Phase 3 is about **deepening your Playwright coverage** so you leave with a stronger testing workflow, not just a single happy-path check.
 
 ---
 
-## Step 1: Plan and Generate Your Prompts (5-10 min)
+## Step 1: Plan and Generate Your Prompts (10 min)
 
 Same workflow as before — follow the **Copilot Workflow Guide** (`copilot-workflow-guide.md`):
 
-1. Use **Plan agent** to describe which stretch goal(s) you want to tackle
+1. Use **Plan agent** to describe which additional Playwright scenarios you want to automate
 2. **Agent Mode** to break it into prompts
 3. Have Copilot save them to `phase3-prompts.md`
 
 ---
 
-## Stretch Goal Options
+## Step 2: Add a Negative-Path Test (25-30 min)
 
-Pick **one or two** — don't try to do them all.
+Write a Playwright test for a failed validation scenario.
 
-### Option A: Add Unit Tests
+**Examples:**
+- Submit with a required field missing
+- Enter an invalid amount or date
+- Trigger a business-rule failure for your document type
 
-Use Copilot to generate tests for your validation logic.
+**What to verify:**
+- The form submits or blocks as expected
+- The user sees a clear error state
+- The right validation message appears on screen
 
-**How:**
-1. Open your validation file
-2. Ask Copilot: *"Write unit tests for this validation logic. Cover passing cases, failing cases, and edge cases like empty input."*
-3. Run the tests and make sure they pass
-
-**Stack-specific test frameworks:**
-- JavaScript: Jest or Vitest
-- Python: pytest
-- Java: JUnit
-- .NET: xUnit or NUnit
-
-> This is a great Copilot showcase — it can generate comprehensive tests in seconds.
+> **Copilot tip:** *"Write a Playwright test for an invalid [document type] submission where [field] is missing. Assert that the validation error appears and the submission is treated as invalid."*
 
 ---
 
-### Option B: Support Multiple Document Types
+## Step 3: Add One Deeper Scenario (25-30 min)
 
-Add a second document type with different validation rules.
+Choose one richer workflow that makes your test suite more realistic.
 
-**How:**
-1. Add a dropdown or selector to your frontend for document type
-2. Create a new set of validation rules for the second type
-3. Route to the correct validator based on the selection
+**Good options:**
+- File upload flow
+- Alternate document type with different rules
+- Backend failure or retry handling
+- Mocked API response for a specific edge case
 
-> **Copilot tip:** *"Add a document type selector with options for Invoice and HR Form. Route to different validation logic based on the selection."*
+Pick **one** and finish it well.
 
----
-
-### Option C: Accept PDF Uploads
-
-Replace form input with file upload and text extraction.
-
-**How:**
-1. Add a file upload input to the frontend
-2. Send the file to the API
-3. Extract text from the PDF using a library:
-   - JavaScript: `pdf-parse`
-   - Python: `pdfplumber` or `PyPDF2`
-   - Java: Apache PDFBox
-   - .NET: PdfSharpCore
-4. Run your existing validation on the extracted text
-
-> This is the hardest stretch goal — only attempt if you're comfortable with file handling.
+> **Copilot tip:** *"Suggest one deeper Playwright scenario for this app that is realistic but still achievable in this session, then generate the test and any small app changes needed to support it."*
 
 ---
 
-### Option D: Build a Summary Dashboard
+## Step 4: Improve Selectors and Assertions (15-20 min)
 
-Show an overview of all validations run during the session.
+Review your tests and make them more stable and readable.
 
-**How:**
-1. Store validation results in memory (an array on the server is fine)
-2. Add a `/results` or `/dashboard` endpoint that returns all past results
-3. Build a simple dashboard page showing: total runs, pass rate, most common errors
+**What to improve:**
+- Replace brittle selectors with `getByRole`, `getByLabel`, or clearer text-based locators
+- Make assertions more specific
+- Remove unnecessary waits or fragile timing assumptions
 
----
-
-### Option E: Add Data Persistence
-
-Save validation results so they survive a server restart.
-
-**How:**
-1. Write results to a JSON file or SQLite database
-2. Add a GET endpoint to retrieve past results
-3. Display history on the frontend
-
-> **Copilot tip:** *"Add a simple SQLite database to store validation results. Save each result on POST and add a GET /history endpoint to retrieve them."*
+> **Copilot tip:** *"Review this Playwright spec and replace brittle selectors with more stable accessible locators. Explain why each change improves reliability."*
 
 ---
 
-### Option F: Create Copilot Customization Files
+## Step 5: Debug a Failure with Trace or Screenshot Output (15-20 min)
 
-Build files that make Copilot smarter for your project — and take them back to your real work.
+Use Playwright's debugging tools as part of the learning experience.
 
-**Custom Instructions (`.github/copilot-instructions.md`):**
-> Ask Copilot: *"Create a copilot-instructions.md file that defines project conventions: always validate required fields first, use the { valid, errors } response format, and follow [your coding style preferences]."*
+**What to do:**
+- Intentionally run a failing test or inspect a real failure
+- Open the trace or screenshot output
+- Ask Copilot to help you interpret what happened
+- Fix the issue and re-run
 
-**SKILL File:**
-> Ask Copilot: *"Create a SKILL.md file that captures the validation patterns and domain knowledge from this project, so Copilot can apply them in future projects."*
+> **Copilot tip:** *"This Playwright test failed. Based on the error and trace, help me understand what happened and how to make the test more reliable."*
 
-**Custom Agent (`.agent.md`):**
-> Ask Copilot: *"Create a custom agent called 'validation-expert' that knows our document schema, validation rules, and error format. It should help generate new validation rules that follow our patterns."*
+---
 
-These are reusable beyond the hackathon — they make Copilot better for your day-to-day work.
+## Optional Stretch Goals
+
+If you finish early, choose one:
+
+- Add unit tests for your validation logic
+- Support multiple document types in the app
+- Accept PDF uploads
+- Build a dashboard or persistence layer
+- Create Copilot customization files such as `.github/copilot-instructions.md`, `SKILL.md`, or `.agent.md`
 
 ---
 
 ## Checkpoint
 
 By the end of Phase 3:
-- [ ] You tackled at least one stretch goal
-- [ ] Your app does something it didn't at the end of Phase 2
+- [ ] You have a happy-path Playwright test
+- [ ] You have a negative-path Playwright test
+- [ ] You have one deeper Playwright scenario or debugging exercise completed
 - [ ] You're ready to demo
 
 **Start preparing your demo.** Think about:
 - What's the best way to show your app in 5 minutes?
-- What was the most impressive Copilot moment?
+- What was the most impressive Copilot + Playwright moment?
 - What did you learn about working with Copilot?
