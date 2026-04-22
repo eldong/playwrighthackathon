@@ -91,3 +91,31 @@ At the end of Phase 1, each participant should have:
 **It's OK if:** The UI is ugly, there's only one validation rule, error handling is minimal.
 
 **It's not OK if:** There's no working connection between frontend and API — participants need a minimal app ready for Playwright in Phase 2.
+
+---
+
+## Facilitator One-Page: Variation Matrix (All Phases)
+
+Use this during check-ins to recommend 2-3 experiments per phase without slowing teams down.
+
+| Phase | Pick 2-3 Variations | Fast Proctor Cue |
+|---|---|---|
+| Phase 1: working flow first | Test-First Variation, Selector Quality Challenge, Prompt Detail A/B Test | "Get one stable path working, then improve prompt clarity and locator quality." |
+| Phase 2: correctness and confidence | Failure Injection Drill, Explain-Back Check, Role-Based Prompting | "Now stress the app with bad inputs and make Copilot explain why fixes work." |
+| Phase 3: polish and demo strength | Model Comparison, Refactor Pass, Demo Readiness Variant | "Choose the cleanest final version, reduce risk, and rehearse the story." |
+
+### 30-Second Recommendation Script
+
+If a participant asks what to do next, use this:
+
+1. "Pick one reliability variation and one communication variation."
+2. "Reliability means selector quality or failure injection."
+3. "Communication means explain-back or demo-readiness script."
+4. "If you still have time, do model comparison on one prompt."
+
+### Decision Rules by Situation
+
+- If they are unstable or flaky: prioritize **Selector Quality Challenge** and **Failure Injection Drill**.
+- If they are slow due to rework: prioritize **Prompt Detail A/B Test**.
+- If they are close to demo time: prioritize **Refactor Pass** and **Demo Readiness Variant**.
+- If they finish early: run **Model Comparison** on one completed checklist prompt and keep the better result.

@@ -85,3 +85,119 @@ Use this same pattern at the start of each build phase:
 2. **Generate prompts** from the plan
 3. **Save them** to a markdown file
 4. **Execute** one at a time
+
+---
+
+## Variation Ideas to Try
+
+If your team finishes early, or wants to compare approaches, run one or two of these experiments and note what changed.
+
+### 1. Model Comparison (Same Task, Different LLM)
+
+Pick one prompt from your checklist and run it with two different models.
+
+Track:
+- Code quality/readability
+- Correctness on first try
+- Amount of follow-up prompting needed
+- Speed to a working result
+
+Use this starter prompt:
+> "Run this exact task with Model A and Model B. For each, explain tradeoffs in code quality, completeness, and likely bugs."
+
+### 2. Prompt Detail A/B Test
+
+Try the same implementation step with:
+- **Version A:** short prompt
+- **Version B:** highly specific prompt (constraints, file names, expected behavior)
+
+Compare which one gives less rework.
+
+### 3. Role-Based Prompting
+
+Ask Copilot to respond in different roles for the same task:
+- "Act as a senior backend engineer"
+- "Act as a test engineer"
+- "Act as a code reviewer"
+
+See how output style and risk awareness change.
+
+### 4. Test-First Variation
+
+Before generating implementation code, ask for tests first.
+
+Example:
+> "Write Playwright tests for happy path and one validation failure first. Then implement only the code needed to pass them."
+
+This usually improves clarity and reduces hidden regressions.
+
+### 5. Selector Quality Challenge (Playwright)
+
+Take one generated spec and improve selectors using accessibility-first locators.
+
+Prompt:
+> "Refactor this test to prefer getByRole/getByLabel selectors and remove brittle CSS selectors. Keep behavior unchanged."
+
+### 6. Failure Injection Drill
+
+Intentionally break one assumption and fix it with Copilot:
+- API returns 500
+- Network delay/timeout
+- Missing required field
+
+Goal: practice debugging prompts, not just generation prompts.
+
+### 7. Refactor Pass (No New Features)
+
+After a phase works, run a cleanup-only pass:
+- Better naming
+- Smaller functions/components
+- Clearer validation messages
+- Remove dead code
+
+Prompt:
+> "Refactor this code for readability and maintainability only. Do not change behavior. Explain each refactor briefly."
+
+### 8. Explain-Back Check
+
+After Copilot generates code, ask it to explain:
+- What changed
+- Why it works
+- What could still fail
+
+If the explanation is weak, the implementation may also be weak.
+
+### 9. Timebox Challenge
+
+Set a 10-minute limit for one checklist item:
+1. Plan prompt
+2. Generate code
+3. Run and test
+4. Capture what blocked you
+
+This sharpens prompt quality and decision-making under time pressure.
+
+### 10. Demo Readiness Variant
+
+Have Copilot produce a short demo script from your completed checklist:
+> "Create a 2-minute demo walkthrough of what we built, what failed, what we fixed, and what we'd do next."
+
+This turns your markdown prompts into a stronger final presentation.
+
+---
+
+## Recommended Variation Matrix by Phase
+
+Use this to pick the most useful experiments for each phase.
+
+| Phase | Primary Goal | Recommended Variations (Pick 2-3) | Why These Fit |
+|---|---|---|---|
+| Phase 1: Build a working end-to-end flow | Ship a stable happy path quickly | Test-First Variation, Selector Quality Challenge, Prompt Detail A/B Test | Keeps scope small, establishes good testing habits early, and improves first-pass generation quality |
+| Phase 2: Add validation and richer behavior | Improve correctness and edge-case handling | Failure Injection Drill, Explain-Back Check, Role-Based Prompting | Surfaces weak assumptions, strengthens reasoning, and improves handling of invalid inputs |
+| Phase 3: Polish, reliability, and demo readiness | Make the project resilient and presentation-ready | Model Comparison, Refactor Pass, Demo Readiness Variant | Helps choose the best final implementation style, reduces technical debt, and sharpens final storytelling |
+
+### Quick Selection Rules
+
+- If your app is unstable: do **Selector Quality Challenge** and **Failure Injection Drill** first.
+- If your prompts feel inconsistent: do **Prompt Detail A/B Test** and **Model Comparison**.
+- If demo day is close: do **Refactor Pass** and **Demo Readiness Variant**.
