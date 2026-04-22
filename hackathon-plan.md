@@ -64,26 +64,29 @@ Goal: **Achieve a working end-to-end flow.**
 - Build an API endpoint to receive and process data
 - Implement basic data extraction or parsing logic
 - Connect frontend → API → response displayed to user
+- Prepare a small `test-data/` fixture set (valid + invalid cases) for Playwright in Phase 2
 
 > 💡 **Tip:** Use a starter template (see below) to skip boilerplate and jump straight to the interesting parts.
 
 ### Build Phase 2 — Playwright Foundations (1.5 hours)
 
-Goal: **Create the first meaningful Playwright coverage for the app.**
+Goal: **Create reliable Playwright foundations and hand off into deeper testing.**
 
+- Validate fixture data from Phase 1 before writing tests
 - Install and configure Playwright
-- Create the first end-to-end spec with Copilot
-- Automate the happy path for the chosen document-validation scenario
-- Run tests locally and interpret failures with Copilot
+- Create and stabilize one happy-path end-to-end test with Copilot
+- Start one negative-path validation test so Phase 3 can go deeper immediately
+- Organize test structure and note flaky selectors/timing pain points for Phase 3
 
 ### Build Phase 3 — Playwright Deepening (1.5 hours)
 
 Goal: **Deepen coverage and improve test quality.**
 
-- Add at least one negative-path validation test
+- Finish or expand negative-path testing from the Phase 2 handoff
 - Add one richer scenario such as file upload, multi-document flow, retry/error handling, or mocked backend behavior
 - Improve selectors and assertions using accessible locators such as `getByRole` and `getByLabel`
 - Use trace or screenshot output to debug a failed test with Copilot
+- Prepare and rehearse a clear 5-minute demo story in the final 10-15 minutes
 
 ### Stretch Goals
 
@@ -168,9 +171,10 @@ To ensure success within the session:
 ## 🎉 What Success Looks Like
 
 - ✅ A working application (frontend + API) running locally
-- ✅ Three meaningful Playwright test scenarios: happy path, negative path, and one deeper scenario
+- ✅ Meaningful Playwright coverage: happy path, negative path (at least one passing), and one deeper scenario
 - ✅ Clear demonstration of Copilot-assisted development during the presentation
 - ✅ Evidence that the team used Copilot to generate, refine, and debug Playwright tests
+- ✅ A rehearsed 5-minute demo flow that runs cleanly from a fresh start
 - ✅ A practical, business-relevant validation scenario
 - ✅ A creative approach and thoughtful user experience
 - ✅ A team that learned something new about AI-assisted development

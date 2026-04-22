@@ -49,6 +49,11 @@ def main():
         [python_executable, 'generate_hackathon_plan_docx.py'],
         project_root,
     )
+    run_step(
+        'Export hackathon plan PDF',
+        [python_executable, 'export_hackathon_plan_pdf.py'],
+        project_root,
+    )
 
     print('\nAll supported documents were generated in the docs folder.')
 
