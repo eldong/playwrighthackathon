@@ -18,10 +18,13 @@ def main():
     project_root = Path(__file__).parent
     python_executable = sys.executable
 
-    participant_guides = [
+    markdown_guides = [
         'phase1-participants.md',
         'phase2-participants.md',
         'phase3-participants.md',
+        'phase1-proctor.md',
+        'phase2-proctor.md',
+        'phase3-proctor.md',
     ]
 
     run_step(
@@ -35,13 +38,13 @@ def main():
         project_root,
     )
     run_step(
-        'Export participant guide DOCX files',
-        [python_executable, 'export_markdown_to_docx.py', *participant_guides],
+        'Export phase guide DOCX files',
+        [python_executable, 'export_markdown_to_docx.py', *markdown_guides],
         project_root,
     )
     run_step(
-        'Export participant guide PDF files',
-        [python_executable, 'export_participant_guides_pdf.py', *participant_guides],
+        'Export phase guide PDF files',
+        [python_executable, 'export_participant_guides_pdf.py', *markdown_guides],
         project_root,
     )
     run_step(

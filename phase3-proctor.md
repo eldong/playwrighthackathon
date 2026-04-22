@@ -13,8 +13,8 @@ Phase 3 is where Playwright becomes deeper learning instead of first exposure. Y
 | 10 min | Picked their next scenario; negative-path test from Phase 2 either passing or actively being fixed | Still re-debugging Phase 2 happy-path |
 | 30 min | Negative-path test passing; deeper scenario started | Only happy-path test exists; no negative-path progress |
 | 1 hour | Deeper scenario or debugging exercise underway | Still only one test; no forward movement |
-| 1.25 hours | Scenarios wrapping up; starting demo prep step | Scenarios still broken or expanding scope |
-| 1.5 hours | App running clean; demo rehearsed; 5-minute story ready | Nothing reliable to show |
+| 1.25 hours | Scenarios wrapping up; starting demo prep and documentation step | Scenarios still broken or expanding scope |
+| 1.5 hours | App running clean; demo rehearsed; `README.md`, `TESTING.md`, and `techOverview.md` drafted | Nothing reliable to show |
 
 ---
 
@@ -58,6 +58,11 @@ Watch for people trying to do 3+ new scenarios or major app rewrites. One strong
 With 15 minutes left, actively remind people:
 > "Start wrapping up! Think about what you want to show in your demo. You have 5 minutes to present — what's the story?"
 
+### Missing Final Documentation
+Some teams finish tests but forget to capture run/test instructions and architecture notes.
+
+**Nudge:** "Before the demo, create `README.md`, `TESTING.md`, and `techOverview.md` so someone else can run this project without guesswork."
+
 ---
 
 ### Weak Assertions
@@ -77,15 +82,16 @@ Actively walk around (or message in chat) and say:
 2. **"What are you showing?"** Which screens, which test output, which Copilot moment.
 3. **"Is your test data ready?"** They should know exactly what inputs they'll enter live.
 4. **"Restart the app and run your tests once more"** — verify it works clean from scratch.
-5. **"What's your 5-minute story?"** App → tests → best Copilot moment → what surprised you.
+5. **"Capture your docs now."** Ensure `README.md`, `TESTING.md`, and `techOverview.md` each have usable content.
+6. **"What's your 5-minute story?"** App → tests → best Copilot moment → what surprised you.
 
 ---
 
 ## Phase 3 Success Criteria
 
-**It's OK if:** They completed one strong additional Playwright scenario, the negative-path test is passing, and they have a clear 5-minute demo story — even if deeper scenarios were only partially explored.
+**It's OK if:** They completed one strong additional Playwright scenario, the negative-path test is passing, they have a clear 5-minute demo story, and the three documentation files are usable — even if deeper scenarios were only partially explored.
 
-**It's not OK if:** The app is broken for the demo, they never progressed past the happy-path test, or demo prep was skipped entirely.
+**It's not OK if:** The app is broken for the demo, they never progressed past the happy-path test, demo prep was skipped entirely, or there is no usable run/test documentation.
 
 ---
 

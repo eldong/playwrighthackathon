@@ -96,6 +96,34 @@ Don't skip this. A polished 5-minute demo is worth more than a half-finished ext
 
 ---
 
+## Step 7: Create Project Documentation (10-15 min)
+
+Before final demos, create three markdown files so someone new can run and understand your project quickly.
+
+1. `README.md` (overall project overview)
+  - What the app does and which document type it validates
+  - How to run the app locally
+  - Where the API and frontend live
+  - Quick summary of Playwright coverage
+
+2. `TESTING.md` (how to test)
+  - Playwright install/setup command(s)
+  - How to run all tests and a single test
+  - Test folder structure and fixture location (`test-data/`)
+  - Common test failure tips (selector issues, timing, local server not running)
+
+3. `techOverview.md` (technical details)
+  - Stack and key libraries
+  - High-level architecture (frontend -> API -> validation)
+  - Validation rules implemented
+  - Known limitations and next improvements
+
+Keep these docs concise and practical. Aim for clear run instructions someone can follow in under 10 minutes.
+
+> **Copilot tip:** *"Generate README.md, TESTING.md, and techOverview.md for this project. Keep each file concise and include exact run/test commands for my stack."*
+
+---
+
 ## Optional Stretch Goals
 
 If you finish early, choose one:
@@ -115,6 +143,7 @@ By the end of Phase 3:
 - [ ] One deeper scenario or debugging exercise completed
 - [ ] Selectors and assertions reviewed and tightened
 - [ ] Demo rehearsed — you know your 5-minute story
+- [ ] Documentation created: `README.md`, `TESTING.md`, and `techOverview.md`
 - [ ] App runs clean from a fresh start
 
 **If you're ahead of schedule:** Pick an optional stretch goal or strengthen your assertions further.
