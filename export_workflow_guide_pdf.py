@@ -82,15 +82,105 @@ except ImportError as e:
         doc = SimpleDocTemplate(str(output_file), pagesize=letter, topMargin=0.5*inch, bottomMargin=0.5*inch)
         styles = getSampleStyleSheet()
         story = []
-        
+
         # Custom styles
         title_style = ParagraphStyle('CustomTitle', parent=styles['Heading1'], fontSize=24, spaceAfter=12, textColor=colors.HexColor('#1F4E78'))
         heading2_style = ParagraphStyle('CustomHeading2', parent=styles['Heading2'], fontSize=14, spaceAfter=10, textColor=colors.HexColor('#1F4E78'))
-        
+        code_style = ParagraphStyle('Code', parent=styles['Normal'], fontName='Courier', fontSize=9, leftIndent=20, rightIndent=20, backColor=colors.HexColor('#F4F4F4'))
+
+        def build_styled_table(table_rows):
+            if len(table_rows) <= 1:
+                return None
+
+            # Remove markdown separator row like: |---|---| if present.
+            separator_row = table_rows[1] if len(table_rows) > 1 else []
+            if separator_row and all(cell and set(cell) <= {'-', ':'} for cell in separator_row):
+                table_rows = [table_rows[0]] + table_rows[2:]
+
+            if len(table_rows) <= 1:
+                return None
+
+            column_count = max(len(row) for row in table_rows)
+            if column_count == 0:
+                return None
+
+            header_cell_style = ParagraphStyle(
+                'TableHeaderCell',
+                parent=styles['BodyText'],
+                fontName='Helvetica-Bold',
+                fontSize=9,
+                textColor=colors.whitesmoke,
+                leading=11,
+            )
+            body_cell_style = ParagraphStyle(
+                'TableBodyCell',
+                parent=styles['BodyText'],
+                fontSize=8,
+                leading=10,
+            )
+
+            normalized_rows = []
+            for row_index, row in enumerate(table_rows):
+                padded = list(row) + [''] * (column_count - len(row))
+                cell_style = header_cell_style if row_index == 0 else body_cell_style
+                normalized_rows.append([
+                    Paragraph(cell if cell else ' ', cell_style) for cell in padded
+                ])
+
+            # Force table to fit the printable page width.
+            col_width = doc.width / column_count
+            table = Table(
+                normalized_rows,
+                colWidths=[col_width] * column_count,
+                hAlign='LEFT',
+                repeatRows=1,
+            )
+            table.setStyle(TableStyle([
+                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#4472C4')),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+                ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+                ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('BOTTOMPADDING', (0, 0), (-1, 0), 8),
+                ('TOPPADDING', (0, 0), (-1, -1), 4),
+                ('BOTTOMPADDING', (0, 1), (-1, -1), 4),
+                ('LEFTPADDING', (0, 0), (-1, -1), 5),
+                ('RIGHTPADDING', (0, 0), (-1, -1), 5),
+                ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+                ('GRID', (0, 0), (-1, -1), 1, colors.black),
+            ]))
+            return table
+
         lines = md_content.split('\n')
-        for line in lines:
+        in_table = False
+        table_data = []
+
+        i = 0
+        while i < len(lines):
+            line = lines[i]
             line_stripped = line.strip()
-            
+
+            # Parse markdown tables before other line handling.
+            if line_stripped.startswith('|'):
+                if not in_table:
+                    in_table = True
+                    table_data = []
+
+                cells = [cell.strip() for cell in line_stripped.split('|')[1:-1]]
+                if cells:
+                    table_data.append(cells)
+
+                i += 1
+                continue
+            elif in_table:
+                table = build_styled_table(table_data)
+                if table is not None:
+                    story.append(table)
+                    story.append(Spacer(1, 0.2*inch))
+
+                in_table = False
+                table_data = []
+
             if line_stripped.startswith('# '):
                 story.append(Paragraph(line_stripped[2:], title_style))
                 story.append(Spacer(1, 0.2*inch))
@@ -100,12 +190,44 @@ except ImportError as e:
             elif line_stripped.startswith('### '):
                 story.append(Paragraph(line_stripped[4:], styles['Heading3']))
                 story.append(Spacer(1, 0.08*inch))
+            elif line_stripped.startswith('#### '):
+                story.append(Paragraph(line_stripped[5:], styles['Heading4']))
+                story.append(Spacer(1, 0.05*inch))
+            elif line_stripped == '---':
+                story.append(Spacer(1, 0.15*inch))
+            elif line_stripped.startswith('```'):
+                code_lines = []
+                i += 1
+                while i < len(lines) and not lines[i].strip().startswith('```'):
+                    code_lines.append(lines[i])
+                    i += 1
+                if code_lines:
+                    story.append(Paragraph('\n'.join(code_lines).strip(), code_style))
+                    story.append(Spacer(1, 0.1*inch))
+            elif line_stripped.startswith('> '):
+                quote_text = line_stripped[2:].strip()
+                quote_style = ParagraphStyle('Quote', parent=styles['Normal'], leftIndent=30, textColor=colors.HexColor('#666666'))
+                story.append(Paragraph(f"<i>{quote_text}</i>", quote_style))
+                story.append(Spacer(1, 0.08*inch))
             elif line_stripped.startswith('- '):
-                story.append(Paragraph(line_stripped[2:], styles['BodyText']))
+                story.append(Paragraph(f"• {line_stripped[2:].strip()}", ParagraphStyle('Bullet', parent=styles['Normal'], leftIndent=20)))
+            elif re.match(r'^\d+\.\s', line_stripped):
+                match = re.match(r'^(\d+)\.\s(.*)', line_stripped)
+                if match:
+                    story.append(Paragraph(f"{match.group(1)}. {match.group(2).strip()}", ParagraphStyle('Numbered', parent=styles['Normal'], leftIndent=20)))
             elif line_stripped:
                 story.append(Paragraph(line_stripped, styles['BodyText']))
             else:
-                story.append(Spacer(1, 0.1*inch))
+                story.append(Spacer(1, 0.05*inch))
+
+            i += 1
+
+        # If file ended while in a table, flush it.
+        if in_table and len(table_data) > 1:
+            table = build_styled_table(table_data)
+            if table is not None:
+                story.append(table)
+                story.append(Spacer(1, 0.2*inch))
         
         doc.build(story)
         print(f"✓ Created {output_file}")

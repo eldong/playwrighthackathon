@@ -10,11 +10,12 @@ During Phase 2, participants should already have a working app. Your job shifts 
 
 | Time Into Phase | Where They Should Be | Red Flag |
 |-----------------|----------------------|----------|
-| 10 min | Have a Phase 2 plan and prompts saved | Still fixing major Phase 1 bugs |
+| 10 min | Fixture sanity check done, and have a Phase 2 plan/prompts saved | Still fixing major Phase 1 bugs or no usable test data |
 | 30 min | Installing or configuring Playwright | Still debating whether to test at all |
 | 50 min | Writing the first happy-path spec | Still stuck in setup or no spec file yet |
-| 1 hour | Running and debugging the test | Test has never been run |
-| 1.5 hours | One happy-path test passes consistently | No passing Playwright test |
+| 1 hour | Running and debugging happy-path test | Test has never been run |
+| 1.25 hours | Negative-path test started | Still only discussing happy path with no second scenario started |
+| 1.5 hours | Happy-path test stable and negative-path started (or passing) | No passing Playwright test, or no plan for Phase 3 depth |
 
 ---
 
@@ -26,6 +27,16 @@ If someone's Phase 1 isn't working yet:
 - Help them get the minimum: form → API → response displayed
 - Suggest simplifying: drop the frontend framework and use plain HTML + fetch
 - Don't let them restart from scratch — fix what they have
+
+### Missing or Bad Test Data
+
+Some teams stall because they are inventing test data while debugging tests.
+
+**Nudge:** "Create a tiny fixture set first: one valid case and two invalid cases. Then write tests against those exact inputs."
+
+Ask them to verify:
+- Field names in fixtures match frontend/API names exactly
+- Expected outcomes are explicit per fixture (success vs specific error)
 
 ### Playwright Setup Friction
 
@@ -59,6 +70,7 @@ If Copilot is generating code that doesn't match their existing patterns:
 - Someone has spent 15+ minutes without getting Playwright installed or a spec created
 - Someone's selectors are obviously brittle and they keep retrying the same pattern
 - Someone's app is broken and they don't realize it
+- Someone has a passing happy path but no movement toward a negative path by the 1-hour mark
 
 **Don't intervene if:**
 - They're learning through one or two test failures
@@ -72,11 +84,17 @@ If Copilot is generating code that doesn't match their existing patterns:
 If someone doesn't know what to automate first:
 > "Start with the most demoable success path: valid input goes in, a clear success result comes out."
 
+If someone is blocked before writing specs:
+> "Run a 5-minute fixture sanity check first, then automate the happy path with the known-good input."
+
 If someone is fighting selectors:
 > "Can Playwright find this by label, button text, or role instead of a long CSS selector?"
 
 If someone is moving fast:
 > "Great progress — start your negative-path test now so Phase 3 can be about deeper coverage and debugging."
+
+If someone has one passing test but extra time:
+> "Use the remaining time to harden: tighten assertions, clean selectors, and create a clear Phase 3 deeper-scenario ticket."
 
 ---
 
@@ -85,9 +103,10 @@ If someone is moving fast:
 At the end of Phase 2, each participant should have:
 1. Playwright installed and runnable
 2. One happy-path Playwright test passing
-3. A basic understanding of how to debug selector, timing, or assertion failures
+3. One negative-path test started (preferably passing)
+4. A basic understanding of how to debug selector, timing, or assertion failures
 
-**It's OK if:** The test is simple, there is only one passing scenario, or the assertions are basic.
+**It's OK if:** The negative-path test is not fully complete yet, as long as the happy path is stable and the next scenario is clearly defined.
 
 **It's not OK if:** They finish the phase without a passing Playwright test.
 

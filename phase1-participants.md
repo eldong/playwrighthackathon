@@ -102,6 +102,26 @@ Display each error on the frontend so the user can see what failed.
 
 ---
 
+## Step 7: Create Mock Data for Testing (10 min)
+
+Prepare a small fixture set now so Playwright work in Phase 2 starts faster.
+
+**Create a test data folder:**
+- `test-data/valid/` with at least one valid input example
+- `test-data/invalid/` with at least two invalid examples
+
+**Minimum fixture set:**
+- One valid JSON payload (or form field set)
+- One invalid case with a missing required field
+- One invalid case with a bad value (negative amount, invalid date, etc.)
+
+**Optional (if you plan file-upload scenarios):**
+- Add one sample PDF in `test-data/files/`
+
+> **Copilot tip:** *"Generate three test fixtures for this schema: one valid, one missing required field, and one invalid value case. Save them in a test-data folder."*
+
+---
+
 ## Checkpoint
 
 By now you should have:
@@ -109,6 +129,7 @@ By now you should have:
 - [ ] An API endpoint that receives and validates data
 - [ ] Validation results displayed back to the user
 - [ ] At least 2-3 validation rules working
+- [ ] A small fixture set ready for Phase 2 Playwright tests
 
 **If you're ahead of schedule:** Start thinking about the three Playwright scenarios you want to cover in Phases 2 and 3: a happy path, a negative path, and one richer scenario.
 

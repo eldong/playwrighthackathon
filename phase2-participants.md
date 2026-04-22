@@ -2,11 +2,25 @@
 
 ## Goal
 
-By the end of this phase, you should have **Playwright installed and working** with at least one meaningful end-to-end test covering your app's happy path.
+By the end of this phase, you should have **Playwright installed and working** with a stable happy-path test, and ideally one negative-path test started (or completed) so Phase 3 can focus on deeper scenarios.
 
 ---
 
-## Step 1: Plan and Generate Your Prompts (10 min)
+## Step 1: Validate Your Test Fixtures (5-10 min)
+
+Before writing Playwright tests, confirm your fixture data from Phase 1 is ready.
+
+**Quick checks:**
+- You have at least one valid input and two invalid inputs
+- Field names match your frontend/API exactly
+- Expected results are clear (success vs specific validation error)
+- Optional file-upload sample exists if you plan that scenario later
+
+If fixtures are missing, create them now in a `test-data/` folder.
+
+---
+
+## Step 2: Plan and Generate Your Prompts (10 min)
 
 Follow the **Copilot Workflow Guide** (`copilot-workflow-guide.md`) again:
 
@@ -15,11 +29,11 @@ Follow the **Copilot Workflow Guide** (`copilot-workflow-guide.md`) again:
 3. Have Copilot save the prompts to a `phase2-prompts.md` file in your project
 
 **Example Plan agent prompt:**
-> "I have a working [use case] app with a [stack] frontend and API. The form submits data, the API validates it, and results display on screen. Help me set up Playwright, create a first happy-path end-to-end test, and debug the likely issues."
+> "I have a working [use case] app with a [stack] frontend and API. The form submits data, the API validates it, and results display on screen. Create a plan for me to set up Playwright, create a first happy-path end-to-end test, and debug the likely issues."
 
 ---
 
-## Step 2: Install and Configure Playwright (20-25 min)
+## Step 3: Install and Configure Playwright (20-25 min)
 
 Set up Playwright in your project and make sure you can run the test runner.
 
@@ -33,7 +47,7 @@ Set up Playwright in your project and make sure you can run the test runner.
 
 ---
 
-## Step 3: Create Your First Happy-Path Test (25-30 min)
+## Step 4: Create Your First Happy-Path Test (25-30 min)
 
 Write one end-to-end Playwright test that proves your app works for a valid submission.
 
@@ -49,7 +63,7 @@ Focus on reliable selectors. Prefer accessible locators like `getByRole`, `getBy
 
 ---
 
-## Step 4: Run, Debug, and Refine the Test (20-25 min)
+## Step 5: Run, Debug, and Refine the Test (20-25 min)
 
 Your first Playwright test probably won't pass on the first try. That's normal.
 
@@ -63,11 +77,35 @@ Your first Playwright test probably won't pass on the first try. That's normal.
 
 ---
 
-## Step 5: Prepare for Deeper Coverage in Phase 3 (10-15 min)
+## Step 6: Start Your Negative-Path Test Now (15-20 min)
+
+Don't wait until Phase 3 if you have time. Add one negative-path test now while your selectors and fixture data are fresh.
+
+**Pick one quick failure case:**
+- Missing required field
+- Invalid numeric value
+- Invalid date/value format
+
+**What to assert:**
+- Validation error is visible
+- Submission is treated as invalid
+- Success state does not appear
+
+> **Copilot tip:** *"Write a Playwright test for an invalid submission where [field] is missing. Assert the exact validation message and verify the success banner is not shown."*
+
+---
+
+## Step 7: Harden and Prepare for Phase 3 (10-15 min)
 
 Pick the next two scenarios you want to automate in Phase 3:
 - One **negative-path** test, such as missing required fields or invalid values
 - One **deeper** scenario, such as file upload, alternate document type, backend failure handling, or mocked responses
+
+Then do these quick setup tasks so Phase 3 starts fast:
+- Save your current tests in a clean structure (`tests/happy-path/`, `tests/negative-path/`, etc.)
+- Confirm fixtures are reusable and named clearly
+- Capture one passing run (`npx playwright test --headed` optional) and verify report output
+- Note known flaky selectors or timing pain points to fix first in Phase 3
 
 > **Copilot tip:** *"Suggest two high-value Playwright scenarios for this app beyond the happy path, and help me choose one negative-path test and one deeper scenario."*
 
@@ -78,9 +116,10 @@ Pick the next two scenarios you want to automate in Phase 3:
 By now you should have:
 - [ ] Playwright installed and runnable
 - [ ] One happy-path Playwright test passing
+- [ ] One negative-path test started (preferably passing)
 - [ ] A basic understanding of selectors, assertions, and test failures
 - [ ] A plan for one negative-path test and one deeper scenario in Phase 3
 
-**If you're ahead of schedule:** Start your negative-path Playwright test now.
+**If you're ahead of schedule:** Start a deeper scenario spike (for example: mocked API failure, file-upload path, or alternate document type).
 
-**If you're behind:** Focus on getting one happy-path test passing. Don't chase extra scenarios until that foundation is working.
+**If you're behind:** Focus on one happy-path test passing and a clearly defined negative-path test plan. Don't chase deeper scenarios until that foundation is working.

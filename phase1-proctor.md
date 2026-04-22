@@ -14,7 +14,7 @@ During Phase 1, your main job is to **unblock people quickly** and **protect the
 | 30 min | Project initialized, starting frontend | Stuck on tooling install or environment issues |
 | 1 hour | Frontend form exists, starting API | No code written yet, or deep in CSS/styling |
 | 1.25 hours | API responds, wiring frontend to API | Still building the form or hasn't started the API |
-| 1.5 hours | Minimal end-to-end flow works with basic validation | Frontend and API not connected |
+| 1.5 hours | Minimal end-to-end flow works with basic validation and a small test-data fixture set exists | Frontend and API not connected, or no reusable test data prepared |
 
 ---
 
@@ -78,6 +78,9 @@ If someone is spending too much time on styling:
 If someone is not using Copilot:
 > "Try describing what you need in Copilot Chat — something like 'Create a POST endpoint that validates this JSON.' See what it gives you."
 
+If someone is nearly done with core flow:
+> "Before Phase 2, create 3 fixtures now: one valid input, one missing-field input, and one invalid-value input."
+
 ---
 
 ## Phase 1 Success Criteria
@@ -87,6 +90,7 @@ At the end of Phase 1, each participant should have:
 2. An API endpoint that receives data
 3. The frontend and API are connected
 4. Some validation logic runs and results display
+5. A small fixture set ready for Playwright (valid + invalid examples)
 
 **It's OK if:** The UI is ugly, there's only one validation rule, error handling is minimal.
 

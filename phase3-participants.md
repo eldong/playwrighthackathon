@@ -2,7 +2,7 @@
 
 ## Goal
 
-You have a working app and at least one passing Playwright test. Phase 3 is about **deepening your Playwright coverage** so you leave with a stronger testing workflow, not just a single happy-path check.
+You have a working app, a passing happy-path test, and at least a negative-path test started (or passing) from Phase 2. Phase 3 is about **finishing that foundation and going deeper** — one additional richer scenario, selector quality improvements, and a polished, rehearsed demo you're proud to show.
 
 ---
 
@@ -16,21 +16,21 @@ Same workflow as before — follow the **Copilot Workflow Guide** (`copilot-work
 
 ---
 
-## Step 2: Add a Negative-Path Test (25-30 min)
+## Step 2: Finish or Expand Your Negative-Path Tests (20-25 min)
 
-Write a Playwright test for a failed validation scenario.
+You should have at least one negative-path test started from Phase 2. Finish it here if it isn't passing yet, then add a second failure case if time allows.
 
-**Examples:**
-- Submit with a required field missing
-- Enter an invalid amount or date
-- Trigger a business-rule failure for your document type
+**If your Phase 2 negative-path test is passing:** Add a second failure scenario — a different invalid field, a boundary-value case, or a business-rule failure specific to your document type.
 
-**What to verify:**
+**If it's still failing:** Fix it now. Focus on getting one clean, reliable assertion before adding more tests.
+
+**What each negative-path test should verify:**
 - The form submits or blocks as expected
-- The user sees a clear error state
-- The right validation message appears on screen
+- A clear error state is visible
+- The exact validation message appears (not just "page contains some text")
+- The success state does not appear
 
-> **Copilot tip:** *"Write a Playwright test for an invalid [document type] submission where [field] is missing. Assert that the validation error appears and the submission is treated as invalid."*
+> **Copilot tip:** *"Write a Playwright test for an invalid [document type] submission where [field] is missing. Assert that the exact validation error appears and the success banner is not shown."*
 
 ---
 
@@ -77,6 +77,25 @@ Use Playwright's debugging tools as part of the learning experience.
 
 ---
 
+## Step 6: Prepare and Rehearse Your Demo (10-15 min)
+
+Don't skip this. A polished 5-minute demo is worth more than a half-finished extra test.
+
+**What to do:**
+- Stop adding new tests. Get everything in a passing state.
+- Decide what you'll show: which user flow, which test output, which Copilot interaction
+- Prepare test data so your demo doesn't rely on luck
+- Do a full app restart and verify it runs clean from scratch
+- Rehearse your 5-minute story:
+  1. What does the app do?
+  2. Show one passing test and one failure test
+  3. What was the most useful Copilot moment?
+  4. What surprised you or what would you do differently?
+
+> **Copilot tip:** *"Help me write a 5-minute demo script for a hackathon presentation. My app [describe it]. I have these Playwright tests [describe them]. What's the cleanest story to tell?"*
+
+---
+
 ## Optional Stretch Goals
 
 If you finish early, choose one:
@@ -92,12 +111,12 @@ If you finish early, choose one:
 ## Checkpoint
 
 By the end of Phase 3:
-- [ ] You have a happy-path Playwright test
-- [ ] You have a negative-path Playwright test
-- [ ] You have one deeper Playwright scenario or debugging exercise completed
-- [ ] You're ready to demo
+- [ ] Negative-path test from Phase 2 is passing (or expanded to a second case)
+- [ ] One deeper scenario or debugging exercise completed
+- [ ] Selectors and assertions reviewed and tightened
+- [ ] Demo rehearsed — you know your 5-minute story
+- [ ] App runs clean from a fresh start
 
-**Start preparing your demo.** Think about:
-- What's the best way to show your app in 5 minutes?
-- What was the most impressive Copilot + Playwright moment?
-- What did you learn about working with Copilot?
+**If you're ahead of schedule:** Pick an optional stretch goal or strengthen your assertions further.
+
+**If you're behind:** Skip additional tests. Get what you have passing, rehearse the demo, and be ready to present what works.

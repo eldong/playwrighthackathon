@@ -10,11 +10,11 @@ Phase 3 is where Playwright becomes deeper learning instead of first exposure. Y
 
 | Time Into Phase | Where They Should Be | Red Flag |
 |-----------------|----------------------|----------|
-| 10 min | Picked a negative-path and deeper scenario | Can't decide what to automate / still fixing Phase 2 bugs |
-| 30 min | Negative-path test in progress or passing | Still only talking about ideas |
-| 1 hour | Deeper scenario or debugging exercise underway | Happy-path test is still the only test |
-| 1.25 hours | Wrapping up scenarios, starting demo prep | App or tests are broken |
-| 1.5 hours | Ready to demo with multiple Playwright learnings | Nothing reliable to show |
+| 10 min | Picked their next scenario; negative-path test from Phase 2 either passing or actively being fixed | Still re-debugging Phase 2 happy-path |
+| 30 min | Negative-path test passing; deeper scenario started | Only happy-path test exists; no negative-path progress |
+| 1 hour | Deeper scenario or debugging exercise underway | Still only one test; no forward movement |
+| 1.25 hours | Scenarios wrapping up; starting demo prep step | Scenarios still broken or expanding scope |
+| 1.5 hours | App running clean; demo rehearsed; 5-minute story ready | Nothing reliable to show |
 
 ---
 
@@ -35,6 +35,11 @@ If someone asks "What should I do?", guide them based on where they are:
 ---
 
 ## Common Issues
+
+### Negative-Path Test Carried Over Incomplete from Phase 2
+Some teams will enter Phase 3 with a negative-path test that's only partially working. This is normal.
+
+**Nudge:** "Before adding anything new, finish the negative-path test from Phase 2. One clean failing-case assertion is far more demo-able than two half-built tests."
 
 ### Library Installation Failures
 For deeper scenarios like file upload, participants may struggle with:
@@ -64,21 +69,23 @@ Some teams will add more tests but keep weak assertions like "page contains text
 
 ## Last 15 Minutes: Demo Prep
 
-Actively walk around (or message in chat) and remind everyone:
+Phase 3 Step 6 is a dedicated demo-prep step for participants. Your job is to enforce it.
 
-1. **Stop coding.** Get the app in a working state.
-2. **Plan your demo flow.** What screens will you show? What data will you enter?
-3. **Prepare test data** that shows passing and failing validation.
-4. **Think about your Copilot + Playwright story.** What was the best moment? What surprised you?
-5. **Make sure the app runs.** Do a full restart and test from scratch.
+Actively walk around (or message in chat) and say:
+
+1. **"Stop coding now."** Get the app in a working state.
+2. **"What are you showing?"** Which screens, which test output, which Copilot moment.
+3. **"Is your test data ready?"** They should know exactly what inputs they'll enter live.
+4. **"Restart the app and run your tests once more"** — verify it works clean from scratch.
+5. **"What's your 5-minute story?"** App → tests → best Copilot moment → what surprised you.
 
 ---
 
 ## Phase 3 Success Criteria
 
-**It's OK if:** They completed one strong additional Playwright scenario and spent meaningful time debugging and refining it.
+**It's OK if:** They completed one strong additional Playwright scenario, the negative-path test is passing, and they have a clear 5-minute demo story — even if deeper scenarios were only partially explored.
 
-**It's not OK if:** The app is broken for the demo or they still only have a single fragile happy-path test to show.
+**It's not OK if:** The app is broken for the demo, they never progressed past the happy-path test, or demo prep was skipped entirely.
 
 ---
 
