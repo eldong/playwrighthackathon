@@ -1,7 +1,10 @@
+"""Generate the hackathon plan DOCX document from the hardcoded agenda content."""
+
 from docx import Document
 from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
+from pathlib import Path
 
 doc = Document()
 
@@ -202,5 +205,7 @@ for item in [
     doc.add_paragraph(item, style='List Bullet')
 
 # Save
-doc.save(r'c:\work\opm\hackathon\hackathon-plan.docx')
+output_dir = Path(__file__).parent / 'docs'
+output_dir.mkdir(exist_ok=True)
+doc.save(output_dir / 'hackathon-plan.docx')
 print('Done!')
