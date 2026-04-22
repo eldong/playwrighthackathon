@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello World App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: #f5f7fb;
+      }
+
+      .card {
+        background: #ffffff;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        width: min(90vw, 420px);
+      }
+
+      button {
+        border: 0;
+        border-radius: 8px;
+        padding: 10px 16px;
+        background: #1f6feb;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #1558b0;
+      }
+
+      #message {
+        margin-top: 16px;
+        font-size: 18px;
+        color: #222;
+        min-height: 1.4em;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <nav>
+        <a href="/">Home</a>
+        <a href="/contact.html">Contact Us</a>
+      </nav>
+      <h1>Hello World</h1>
+      <button id="showTextBtn">Press me</button>
+      <button id="clearBtn">Clear</button>
+      <p id="message"></p>
+    </main>
+
+    <script>
+      const button = document.getElementById("showTextBtn");
+      const message = document.getElementById("message");
+
+      button.addEventListener("click", () => {
+        message.textContent = "Hello from test JavaScript!";
+      });
+
+      const clearBtn = document.getElementById("clearBtn");
+      clearBtn.addEventListener("click", () => {
+        message.textContent = "";
+      });
+    </script>
+  </body>
+</html>
