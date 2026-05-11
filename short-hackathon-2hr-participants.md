@@ -4,6 +4,8 @@
 
 Build a minimal document-validation app and prove quality with Playwright in a single 2-hour session.
 
+Recommended scenario for this short format: build an HR form validator that accepts a submitted form and validates required fields and basic business rules.
+
 By the end, you should have:
 - A working form -> API -> validation response flow
 - One passing Playwright happy-path test
@@ -13,6 +15,16 @@ By the end, you should have:
 ---
 
 ## Timeboxed Agenda (120 Minutes)
+
+Agenda context: this run is optimized for one clear use case, an HR form validation workflow where users submit form data and immediately receive validation results.
+
+Example A (valid submission):
+- Input: employeeName="Maya Patel", employeeId="EMP-1042", department="Finance", startDate="2025-09-01", managerEmail="manager@contoso.com"
+- Expected result: `valid: true` and a success message such as "HR form is valid."
+
+Example B (invalid submission):
+- Input: employeeName="", employeeId="1042", department="", startDate="2035-01-01", managerEmail="manager-at-contoso.com"
+- Expected result: `valid: false` with clear errors such as "Employee name is required", "Employee ID must match EMP-XXXX", "Department is required", "Start date cannot be in the future", and "Manager email format is invalid"
 
 | Block | Duration | Outcome |
 |---|---:|---|
