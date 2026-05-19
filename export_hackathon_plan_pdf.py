@@ -5,7 +5,7 @@ from pathlib import Path
 from export_participant_guides_pdf import md_to_pdf
 
 
-update in patch branch
+update in main
 
 def main():
     project_root = Path(__file__).parent
