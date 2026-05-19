@@ -5,6 +5,8 @@ from pathlib import Path
 from export_participant_guides_pdf import md_to_pdf
 
 
+update in patch branch
+
 def main():
     project_root = Path(__file__).parent
     input_file = project_root / 'hackathon-plan.md'
