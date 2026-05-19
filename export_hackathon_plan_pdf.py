@@ -17,6 +17,6 @@ def main():
 
     md_to_pdf(input_file, output_file)
 
-
+// fixed a bug
 if __name__ == '__main__':
     main()
