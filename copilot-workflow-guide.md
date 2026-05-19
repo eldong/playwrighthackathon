@@ -10,6 +10,7 @@ This is the core workflow you'll follow for each build phase. It keeps you in co
 
 Switch to **Plan agent** in Copilot and describe what you want to accomplish for this phase.
 
+1.b branch test3
 1.a   Step in test2 branch
 
 **Example for Phase 1:**
