@@ -10,13 +10,6 @@ This is the core workflow you'll follow for each build phase. It keeps you in co
 
 Switch to **Plan agent** in Copilot and describe what you want to accomplish for this phase.
 
-1.b branch test3
-1.a   Step in test2 branch
-
-1.c  third update
-
-1.d fourth update
-
 **Example for Phase 1:**
 > "I want to build an invoice validator. I'll use React for the frontend and Express for the API. Help me plan the file structure, components, API endpoints, and the steps to get a working end-to-end flow."
 
