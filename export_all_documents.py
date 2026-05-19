@@ -7,6 +7,8 @@ import sys
 
 """ Update in new branchg """
 
+update 1 in branch
+
 def run_step(description, command, project_root):
     print(f"\n==> {description}")
     result = subprocess.run(command, cwd=project_root)
