@@ -9,6 +9,8 @@ import sys
 
 update one in branch
 
+update two in branch - one
+
 def run_step(description, command, project_root):
     print(f"\n==> {description}")
     result = subprocess.run(command, cwd=project_root)
