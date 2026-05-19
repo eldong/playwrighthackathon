@@ -7,7 +7,7 @@ import sys
 
 """ Update in new branchg """
 
-update 1 in branch
+update one in branch
 
 def run_step(description, command, project_root):
     print(f"\n==> {description}")
