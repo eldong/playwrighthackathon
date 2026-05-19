@@ -5,7 +5,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-""" Update 1 in new branch """
+""" Update 2 in main branch """
 
 def run_step(description, command, project_root):
     print(f"\n==> {description}")
